@@ -2,6 +2,11 @@
     <html>
         <head>
             <title>评论区</title>
+            <script type="text/javascript" src="vue.js"></script>
+            <!-- 引入样式 -->
+            <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+            <!-- 引入组件库 -->
+            <script src="https://unpkg.com/element-ui/lib/index.js"></script>
             <style>
 
                 body, html{
@@ -72,13 +77,38 @@
 
                 #modeBtn{
                     margin-left: 700px;
-                    color: #d5a49b;
                 }
             </style>
         </head>
 
         <body>
-            <button id="modeBtn">切换深色</button>
+            <div id="app">
+                <el-button @click="change" id="modeBtn">双击切换深色</el-button>
+            </div>
+            <script>
+                var app = new Vue({
+                    el:"#app",
+                    methods:{
+                        change:function(){
+                        //切换深浅主题
+                        const Btn = document.getElementById('modeBtn');
+                            Btn.addEventListener('click', (e) => {
+                                const body = document.body;
+                                if(e.target.innerHTML === '双击切换深色'){
+                                    body.style.backgroundColor = 'black';
+                                    body.style.color = 'white';
+                                    e.target.innerHTML = '双击切换浅色';
+                                }
+                                else{
+                                    body.style.backgroundColor = 'white';
+                                    body.style.color = 'black';
+                                    e.target.innerHTML = '双击切换深色';
+                                }
+                            })
+                        }
+                    }
+                })
+            </script>
             <main onclick="mainCLick(event)" style="text-align: left">
                 <div class="form_item">
                     <label>姓名：</label>
@@ -443,20 +473,5 @@
                 document.getElementById('button_submit_div').innerHTML = '';
             };
 
-            //切换深浅主题
-            const Btn = document.getElementById('modeBtn');
-            Btn.addEventListener('click', (e) => {
-                const body = document.body;
-                if(e.target.innerHTML === '切换深色'){
-                    body.style.backgroundColor = 'black';
-                    body.style.color = 'white';
-                    e.target.innerHTML = '切换浅色';
-                }
-                else{
-                    body.style.backgroundColor = 'white';
-                    body.style.color = 'black';
-                    e.target.innerHTML = '切换深色';
-                }
-            })
         </script>
     </html>
