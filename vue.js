@@ -286,7 +286,7 @@
           }
       }
       else if (!isObjectA && !isObjectB) {
-          return String(a) === String(b);
+          return String(a) == String(b);
       }
       else {
           return false;
